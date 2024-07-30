@@ -16,8 +16,6 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
 
-bot = Bot(token=api_token)
-
 # We are using only a single state in this bot
 REPLY = 0
 
