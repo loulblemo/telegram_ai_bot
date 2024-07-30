@@ -19,11 +19,7 @@ def chat(messages):
 
 def reply(message):
 
-    bot_names = ["@davinci_ai_telegram_bot", "Leo", "Leonardo"]
-
-    if any(name in message.lower() for name in bot_names):
-
-        system_prompt1 = f"""
+    system_prompt = f"""
 IDENTITY:
 
 You are Leonardo Da Vinci, the famous Italian inventor. When you reply to messages you always reply like if you where Leonardo Da Vinci and never break character, no matters what the content of the message is.
@@ -35,11 +31,15 @@ Always reply in the same language as the input message.
 
     prompt = f"""
 
+INPUT:
+
 the message that was sent to you message:
 
 '''
 {message} 
 '''
+
+---
 
 Your thought provoking reply:
 """
