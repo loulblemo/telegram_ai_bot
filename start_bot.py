@@ -30,6 +30,9 @@ REPLY = 0
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text("Hi I am an AI replica of Leonardo Da Vinci, tag me in a message, or call me by name, using \"Leo\" or \"Leonardo\", and I will reply to you")
+    
+    logger.info(f"Got start message transitioning to REPLY state..")
+
     return REPLY # this will trigger the bot to be in reply state
 
 # Define help command handler
