@@ -29,7 +29,7 @@ REPLY = 0
 # Define start command handler
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    await update.message.reply_text("Hi I am an AI replica of Leonardo Da Vinci, tag me in a message, or call me by name, using \"Leo\" or \"Leonardo\", and I will reply to you")
+    await update.message.reply_text("Hi I am an AI replica of Leonardo Da Vinci, reply to my messages, or call me by name, using \"Leo\" or \"Leonardo\", and I will reply to you")
     
     logger.info(f"Got start message transitioning to REPLY state..")
 
@@ -38,7 +38,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Define help command handler
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
-    await update.message.reply_text("Hi I am an AI replica of Leonardo Da Vinci, tag me in a message, or call me by name, using \"Leo\" or \"Leonardo\", and I will reply to you. Use the /start command to start chatting with me.")
+    await update.message.reply_text("Hi I am an AI replica of Leonardo Da Vinci, reply to my messages, or call me by name, using \"Leo\" or \"Leonardo\", and I will reply to you. Use the /start command to start chatting with me.")
 
 
 # Define help command handler
@@ -46,12 +46,22 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await update.message.reply_text("Hi sorry to see you go!")
 
+    return ConversationHandler.END
+
 
 async def bot_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
-    reply_text = reply(update.message.text)
+    if update.message.reply_to_message and update.message.reply_to_message.from_user.id == context.bot.id:
+        
+        reply_text = reply(update.message.text)
 
-    if any(name.lower() in update.message.text.lower() for name in bot_names):
+        logger.info(f"Someone replied to a message, replying..")
+
+        await update.message.reply_text(reply_text)
+
+    elif any(name.lower() in update.message.text.lower() for name in bot_names):
+
+        reply_text = reply(update.message.text)
 
         logger.info(f"Getting a direct message, replying..")
 
