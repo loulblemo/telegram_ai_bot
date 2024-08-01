@@ -29,7 +29,7 @@ REPLY = 0
 # Define start command handler
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    await update.message.reply_text("Hi I am an AI replica of Leonardo Da Vinci. I will reply to your messages if call me by name, using \"Leo\" or \"Leonardo\" or if you reply to my messages.")
+    await update.message.reply_text("Hi I am an AI replica of Leonardo Da Vinci. I will reply to your messages if call me by name, using \"Leo\" or \"Leonardo\" or if you reply to my messages. To be able to chat with me a member of this chat has to send the /start command first.")
     
     logger.info(f"Got start message transitioning to REPLY state..")
 
@@ -38,7 +38,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Define help command handler
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
-    await update.message.reply_text("Hi I am an AI replica of Leonardo Da Vinci. I will reply to your messages if call me by name, using \"Leo\" or \"Leonardo\" or if you reply to my messages. Use the /start command to start chatting with me.")
+    await update.message.reply_text("Hi I am an AI replica of Leonardo Da Vinci. I will reply to your messages if call me by name, using \"Leo\" or \"Leonardo\" or if you reply to my messages. Use the /start command to start chatting with me. To be able to chat with me a member of this chat has to send the /start command first")
 
 
 # Define help command handler
